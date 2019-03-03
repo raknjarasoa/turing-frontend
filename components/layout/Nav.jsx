@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NavStyles from './styles/NavStyles';
+import NavStyles from '../styles/NavStyles';
 
 const Nav = () => (
   <NavStyles data-test='nav'>
@@ -15,7 +15,6 @@ const Nav = () => (
     <Link href='/me'>
       <a>Account</a>
     </Link>
-    <Signout />
   </NavStyles>
 );
 

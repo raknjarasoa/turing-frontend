@@ -45,4 +45,3 @@ const SearchStyles = styled.div`
 `;
 
 export { DropDown, DropDownItem, SearchStyles };
-
