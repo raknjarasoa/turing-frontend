@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
+import Product from './product';
 
 const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY {
@@ -38,11 +39,8 @@ class Products extends Component {
             if (error) return <p>{error.message}</p>;
             return (
               <ProductList>
-                {data.products.map((p) => (
-                  <>
-                    <p key={p.id}>{p.description}</p>
-                    <img src={p.image} alt={p.name} />
-                  </>
+                {data.products.map((product) => (
+                  <Product key={product.id} item={product} />
                 ))}
               </ProductList>
             );

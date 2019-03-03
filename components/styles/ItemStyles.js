@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Item = styled.div`
+export const ItemStyles = styled.div`
   background: white;
   border: 1px solid ${(props) => props.theme.offWhite};
   box-shadow: ${(props) => props.theme.bs};

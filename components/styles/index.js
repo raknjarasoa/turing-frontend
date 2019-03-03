@@ -2,7 +2,7 @@ export * from './ButtonStyles';
 export * from './CartStyles';
 export * from './CloseButton';
 export * from './DropDown';
-export * from './from';
+export * from './Form';
 export * from './ItemStyles';
 export * from './NavStyles';
 export * from './OrderItemStyles';

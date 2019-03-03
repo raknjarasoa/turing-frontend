@@ -1,7 +1,7 @@
 import App, { Container } from 'next/app';
 import Page from '../components/layout/Page';
 import { ApolloProvider } from 'react-apollo';
-import withData from '../lib/withData';
+import { withData } from '../lib';
 class TuringApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
