@@ -17,7 +17,7 @@ export default class Product extends PureComponent {
         <Title>
           <Link
             href={{
-              pathname: '/item',
+              pathname: '/product',
               query: {
                 id: item.id
               }
