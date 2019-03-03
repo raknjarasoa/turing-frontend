@@ -44,4 +44,4 @@ const SearchStyles = styled.div`
   }
 `;
 
-export { DropDown, DropDownItem, SearchStyles };
+export { DropDown, DropDownItem, SearchStyles, glow };

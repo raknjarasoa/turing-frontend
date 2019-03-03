@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Supreme = styled.h3`
+export const Supreme = styled.h3`
   background: ${(props) => props.theme.red};
   color: white;
   display: inline-block;
@@ -9,5 +9,3 @@ const Supreme = styled.h3`
   margin: 0;
   font-size: 4rem;
 `;
-
-export default Supreme;

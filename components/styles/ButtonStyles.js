@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ButtonStyles = styled.button`
+export const ButtonStyles = styled.button`
   background: red;
   color: white;
   font-weight: 500;
@@ -16,5 +16,3 @@ const ButtonStyles = styled.button`
     opacity: 0.5;
   }
 `;
-
-export default ButtonStyles;
