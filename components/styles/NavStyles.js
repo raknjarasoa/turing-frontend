@@ -22,7 +22,7 @@ const NavStyles = styled.ul`
     font-weight: 800;
     @media (max-width: 700px) {
       font-size: 10px;
-      padding: 0 10px;
+      padding: 10px 1.2rem;
     }
     &:before {
       content: '';
