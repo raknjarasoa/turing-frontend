@@ -1,40 +1,20 @@
+import Router from 'next/router';
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import gql from 'graphql-tag';
+
+import { CREATE_PRODUCT_QUERY } from '../queries';
 import { Form } from '../styles';
-import Router from 'next/router';
-
+import { uploadImage } from '../utils';
 import DisplayError from './ErrorMessage';
-
-const CREATE_PRODUCT_QUERY = gql`
-  mutation CREATE_PRODUCT_QUERY(
-    $name: String!
-    $description: String!
-    $display: Int!
-    $price: Float!
-    $image: String
-  ) {
-    createProduct(
-      data: {
-        name: $name
-        description: $description
-        display: $display
-        price: $price
-        image: $image
-      }
-    ) {
-      id
-    }
-  }
-`;
 
 export default class CreateProduct extends Component {
   state = {
-    name: '',
-    description: '',
-    display: 0,
-    price: 0,
-    image: ''
+    name: 'test',
+    description: 'ddddddddd dddddddddd',
+    display: 10,
+    price: 10,
+    image: '',
+    files: null
   };
 
   handleChange = (e) => {
@@ -45,26 +25,61 @@ export default class CreateProduct extends Component {
     });
   };
 
+  handleSubmit = async (createProduct) => {
+    const res = await uploadImage(this.state.files);
+    const file = await res.json();
+
+    this.setState({
+      image: file.secure_url
+    });
+
+    const resp = await createProduct();
+    console.log(resp);
+
+    Router.push({
+      pathname: '/product',
+      query: {
+        id: resp.data.createProduct.id
+      }
+    });
+  };
+
+  handleFileChange = (e) => {
+    this.setState({
+      files: e.target.files
+    });
+  };
+
   render() {
     return (
       <Mutation mutation={CREATE_PRODUCT_QUERY} variables={this.state}>
         {(createProduct, { loading, error, called, data }) => {
           return (
             <Form
-              onSubmit={async (e) => {
+              onSubmit={(e) => {
                 e.preventDefault();
-                const resp = await createProduct();
-                console.log(resp);
-
-                Router.push({
-                  pathname: '/product',
-                  query: {
-                    id: resp.data.createProduct.id
-                  }
-                });
+                this.handleSubmit(createProduct);
               }}>
               <DisplayError error={error} />
               <fieldset disabled={loading} aria-busy={loading}>
+                <label htmlFor='image'>
+                  Image
+                  <input
+                    type='file'
+                    name='image'
+                    id='image'
+                    placeholder='Upload image'
+                    onChange={this.handleFileChange}
+                  />
+                  {this.state.image && (
+                    <img
+                      src={this.state.image}
+                      alt='Preview upload'
+                      width='200px'
+                    />
+                  )}
+                </label>
+
                 <label htmlFor='name'>
                   Title
                   <input

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import styled from 'styled-components';
+
 import Nav from './Nav';
 
 Router.onRouteChangeStart = () => {

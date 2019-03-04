@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { ItemStyles, PriceTag, Title } from '../components/styles';
-import { formatMoney } from '../lib';
+import { ItemStyles, PriceTag, Title } from '../src/styles';
+import { formatMoney } from '../src/utils';
 
 export default class Product extends PureComponent {
   static propTypes = {
