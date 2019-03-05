@@ -13,24 +13,27 @@ export const ALL_PRODUCTS_QUERY = gql`
   }
 `;
 
-export const CREATE_PRODUCT_QUERY = gql`
-  mutation CREATE_PRODUCT_QUERY(
-    $name: String!
-    $description: String!
-    $display: Int!
-    $price: Float!
-    $image: String
-  ) {
-    createProduct(
-      data: {
-        name: $name
-        description: $description
-        display: $display
-        price: $price
-        image: $image
-      }
-    ) {
+export const GET_PRODUCT_QUERY = gql`
+  query GET_PRODUCT_QUERY($id: ID!) {
+    product(where: { id: $id }) {
       id
+      name
+      description
+      display
+      price
+    }
+  }
+`;
+
+export const GET_PRODUCT_DETAIL_QUERY = gql`
+  query GET_PRODUCT_DETAIL_QUERY($id: ID!) {
+    product(where: { id: $id }) {
+      id
+      name
+      description
+      display
+      price
+      image
     }
   }
 `;

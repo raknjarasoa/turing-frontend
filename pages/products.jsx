@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 
 import styled from 'styled-components';
-import Product from './product';
+import Product from '../src/components/Product';
 import { ALL_PRODUCTS_QUERY } from '../src/queries';
 
 const Center = styled.div`
@@ -28,7 +28,7 @@ class Products extends Component {
             return (
               <ProductList>
                 {data.products.map((product) => (
-                  <Product key={product.id} item={product} />
+                  <Product key={product.id} product={product} />
                 ))}
               </ProductList>
             );

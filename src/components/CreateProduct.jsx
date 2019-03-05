@@ -2,15 +2,15 @@ import Router from 'next/router';
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 
-import { CREATE_PRODUCT_QUERY } from '../queries';
+import { CREATE_PRODUCT_MUTATION } from '../queries';
 import { Form } from '../styles';
 import { uploadImage } from '../utils';
 import DisplayError from './ErrorMessage';
 
 export default class CreateProduct extends Component {
   state = {
-    name: 'test',
-    description: 'ddddddddd dddddddddd',
+    name: 'Test x',
+    description: 'Are you sure that you want to reset the dat',
     display: 10,
     price: 10,
     image: '',
@@ -25,7 +25,8 @@ export default class CreateProduct extends Component {
     });
   };
 
-  handleSubmit = async (createProduct) => {
+  handleSubmit = async (e, createProduct) => {
+    e.preventDefault();
     const res = await uploadImage(this.state.files);
     const file = await res.json();
 
@@ -52,14 +53,10 @@ export default class CreateProduct extends Component {
 
   render() {
     return (
-      <Mutation mutation={CREATE_PRODUCT_QUERY} variables={this.state}>
+      <Mutation mutation={CREATE_PRODUCT_MUTATION} variables={this.state}>
         {(createProduct, { loading, error, called, data }) => {
           return (
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                this.handleSubmit(createProduct);
-              }}>
+            <Form onSubmit={(e) => this.handleSubmit(e, createProduct)}>
               <DisplayError error={error} />
               <fieldset disabled={loading} aria-busy={loading}>
                 <label htmlFor='image'>

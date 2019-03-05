@@ -1,49 +1,9 @@
-import Link from 'next/link';
-import PropTypes from 'prop-types';
-import React, { PureComponent } from 'react';
-import { ItemStyles, PriceTag, Title } from '../src/styles';
-import { formatMoney } from '../src/utils';
+import ProductDetail from '../src/components/ProductDetail';
 
-export default class Product extends PureComponent {
-  static propTypes = {
-    item: PropTypes.object.isRequired
-  };
+const Detail = ({ query }) => (
+  <div>
+    <ProductDetail id={query.id} />
+  </div>
+);
 
-  render() {
-    const { item } = this.props;
-    return (
-      <ItemStyles>
-        {item.image && <img src={item.image} alt={item.name} />}
-        <Title>
-          <Link
-            href={{
-              pathname: '/product',
-              query: {
-                id: item.id
-              }
-            }}>
-            <a>{item.name}</a>
-          </Link>
-        </Title>
-
-        <PriceTag>{formatMoney(item.price)}</PriceTag>
-
-        <p>{item.description}</p>
-
-        <div className='buttonList'>
-          <Link
-            href={{
-              pathname: 'update',
-              query: {
-                id: item.id
-              }
-            }}>
-            <a>Edit ♐️</a>
-          </Link>
-          <button>Add to Cart</button>
-          <button>Delete</button>
-        </div>
-      </ItemStyles>
-    );
-  }
-}
+export default Detail;
